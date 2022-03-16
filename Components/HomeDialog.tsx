@@ -1,19 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
+import style from "../styles/Home.module.css";
+import clsx from "clsx";
 
-interface HomeDialogProps {}
+interface HomeDialogProps {
+  isShown: boolean;
+}
 
 const useStyles: any = makeStyles((theme: any) => ({
-  homeDialog: {
-    display: "flex",
-    width: "70%",
-    paddingTop: "6%",
-    backgroundColor: "#1d1d1d",
-    borderRadius: "20px",
-    flexDirection: "column",
-    alignItems: "start",
-    paddingLeft: "76px",
-  },
   title: {
     fontSize: "40px",
     fontWeight: "bolder",
@@ -144,9 +138,20 @@ const useStyles: any = makeStyles((theme: any) => ({
       border: "2px solid #e4e4e4",
     },
   },
+  dialog: {
+    transition: "all 0.3s ease-out",
+    display: "flex",
+    width: "70%",
+    paddingTop: "6%",
+    backgroundColor: "#1d1d1d",
+    borderRadius: "20px",
+    flexDirection: "column",
+    alignItems: "start",
+    paddingLeft: "76px",
+  },
 }));
 
-function HomeDialog(props: HomeDialogProps) {
+function HomeDialog({ isShown }: HomeDialogProps) {
   const classes = useStyles();
   let htmlString = "<html>";
   let bodyString = "<body>";
@@ -155,9 +160,30 @@ function HomeDialog(props: HomeDialogProps) {
   let h1CloseString = "</h1>";
   let buttonString = "<button>";
   let buttonCloseString = "</ button>";
+  const [classValue, setClassValue] = useState("");
+  let classArray = [
+    "Y",
+    "XL",
+    "XR",
+    "RX",
+    "RY",
+    "SkewY",
+    "SkewX",
+    "Crazy",
+    "Crazy2",
+  ];
+
+  useEffect(() => {
+    let value = Math.floor(Math.random() * 8);
+    setClassValue(
+      isShown
+        ? "ModalOpen".concat(classArray[value])
+        : "ModalClosed".concat(classArray[value])
+    );
+  }, []);
 
   return (
-    <div className={classes.homeDialog}>
+    <div className={clsx(classes.dialog, style[classValue])}>
       <div className={classes.htmlText}>{htmlString}</div>
       <div className={classes.htmlText}>{bodyString}</div>
       <div

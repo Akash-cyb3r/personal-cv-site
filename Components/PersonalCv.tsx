@@ -3,6 +3,8 @@ import React from "react";
 import BackgroundComponent from "./BackgroundComponent";
 import Profile from "./Profile";
 import HomeDialog from "./HomeDialog";
+import { SvgPerson } from "./SvgIcons";
+import About from "./About";
 
 const useStyles: any = makeStyles((theme: any) => ({
   main: {
@@ -33,8 +35,9 @@ const useStyles: any = makeStyles((theme: any) => ({
 }));
 interface PersonalCvProps {
   radioValue: any;
+  component: any;
 }
-function PersonalCv({ radioValue }: PersonalCvProps) {
+function PersonalCv({ radioValue, component }: PersonalCvProps) {
   const classes = useStyles();
 
   return (
@@ -42,7 +45,15 @@ function PersonalCv({ radioValue }: PersonalCvProps) {
       <BackgroundComponent radioValue={radioValue} />
       <div className={classes.content}>
         <Profile />
-        <HomeDialog />
+        {/* <div className={classes.dialog}> */}
+        {component === "Home" ? (
+          <HomeDialog isShown={component === "Home" ? true : false} />
+        ) : component === "About" ? (
+          <About isShown={component === "About" ? true : false} />
+        ) : (
+          <></>
+        )}
+        {/* </div> */}
       </div>
     </div>
   );
