@@ -23,6 +23,31 @@
   }
 }
 
+.ModalOpenYB {
+  animation: ModalOpenYB 0.4s ease-out backwards;
+}
+.ModalOpenYB {
+  animation: ModalOpenYB 0.4s ease-out backwards;
+}
+
+@keyframes ModalOpenYB {
+  0% {
+    transform: translateY(90%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes ModalOpenYB {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
 .ModalOpenXL {
   animation: ModalOpenXL 0.4s ease-out forwards;
 }

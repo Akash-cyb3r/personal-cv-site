@@ -71,18 +71,18 @@ const useStyles: any = makeStyles((theme: any) => ({
     color: "#7a7a7a",
   },
   svgContainer: {
-    width: "34px",
+    width: "42px",
     height: "184px",
     position: "absolute",
     top: "28%",
     right: "-26px",
-    background: "#d9d9d9",
+    background: "#3a3a3a",
     borderTopLeftRadius: "16px",
-    borderBottomLeftRadius: "26px",
+    borderBottomLeftRadius: "16px",
     display: "flex",
     alignItems: "baseline",
     justifyContent: "center",
-    padding: "10px 0",
+    padding: "10px 0 0 8px",
     cursor: "pointer",
     "& svg": {},
     "&:hover": {
@@ -94,10 +94,7 @@ const useStyles: any = makeStyles((theme: any) => ({
     width: "24px",
     height: "24px",
     "&:hover": {
-      width: "40px",
-      height: "40px",
-      right: "0px",
-      top: "0px",
+      fill: "#bebebe !important",
     },
   },
   svgPerson: {
@@ -106,10 +103,7 @@ const useStyles: any = makeStyles((theme: any) => ({
     height: "24px",
     top: "46px",
     "&:hover": {
-      width: "40px",
-      height: "40px",
-      right: "0px",
-      top: "40px",
+      fill: "#bebebe !important",
     },
   },
 }));
@@ -118,6 +112,8 @@ const Home: NextPage = () => {
   const classes = useStyles();
   const [isMuted, setIsmuted] = useState(true);
   const [isSettingOpen, setSettingOpen] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [isFirstRun, setFirstRun] = useState(true);
   const [radioValue, setRadioValue] = useState("video");
   const [component, setComponent] = useState("Home");
   function onSoundBtnClick() {
@@ -141,9 +137,20 @@ const Home: NextPage = () => {
     }
   }, [radioValue]);
 
+  useEffect(() => {
+    setLoading(true);
+  }, []);
+
   return (
     <div style={{ position: "relative" }}>
-      <PersonalCv radioValue={radioValue} component={component} />
+      <PersonalCv
+        radioValue={radioValue}
+        component={component}
+        isLoading={isLoading}
+        setLoading={setLoading}
+        isFirstRun={isFirstRun}
+        setFirstRun={setFirstRun}
+      />
       <div className={classes.setting} onClick={settingFn}>
         <SvgSetting />
       </div>
@@ -175,10 +182,12 @@ const Home: NextPage = () => {
         <SvgHome
           className={classes.svgHome}
           onClick={() => setComponent("Home")}
+          style={{ fill: component === "Home" ? "#bebebe" : "#000" }}
         />
         <SvgPerson
           className={classes.svgPerson}
           onClick={() => setComponent("About")}
+          style={{ fill: component === "About" ? "#bebebe" : "#000" }}
         />
       </div>
     </div>

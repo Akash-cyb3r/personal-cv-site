@@ -1,13 +1,14 @@
 import { Box, FormControlLabel, Modal, Radio, RadioGroup } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
+import { SvgClose } from "./SvgIcons";
 
 const useStyles: any = makeStyles((theme: any) => ({
   customModalRoot: {
     top: "40px !important",
     left: "unset !important",
     right: "8px !important",
-    width: "200px",
+    width: "224px",
     height: "200px",
     background: "#3a3a3a",
     borderRadius: "8px",
@@ -17,10 +18,26 @@ const useStyles: any = makeStyles((theme: any) => ({
     flexDirection: "column",
     color: "#d2d2d2",
     marginTop: "6px",
+    boxShadow: "0 19px 38px rgb(0 0 0 / 83%), 0 15px 12px rgb(0 0 0 / 47%)",
   },
   label: {
     marginLeft: "unset !important",
     marginRight: "unset !important",
+  },
+  labelImg: {
+    marginLeft: "unset !important",
+    marginRight: "unset !important",
+    paddingRight: "11px",
+  },
+  closeBtn: {
+    position: "absolute",
+    width: "20px",
+    right: "6px",
+    top: "5px",
+    cursor: "pointer",
+  },
+  backgroundText: {
+    color: "#fff",
   },
 }));
 interface SettingDialogProps {
@@ -46,7 +63,8 @@ function SettingDialog({
       className={classes.customModalRoot}
     >
       <>
-        <div>Background</div>
+        <div className={classes.backgroundText}>Background</div>
+        <SvgClose className={classes.closeBtn} onClick={handleClose} />
         <RadioGroup
           aria-labelledby="demo-controlled-radio-buttons-group"
           name="controlled-radio-buttons-group"
@@ -56,8 +74,15 @@ function SettingDialog({
             color: "#fff",
             display: "flex",
             flexDirection: "row",
+            borderRadius: "6px",
+            border: "2px solid #575757",
+            padding: "3px",
+            marginTop: "14px",
             "&.Mui-checked": {
               color: "#fff",
+            },
+            "&:hover": {
+              background: "#4f4e4e91",
             },
           }}
         >
@@ -89,7 +114,7 @@ function SettingDialog({
               />
             }
             label="Image"
-            className={classes.label}
+            className={classes.labelImg}
           />
         </RadioGroup>
       </>

@@ -13,7 +13,7 @@ const useStyles: any = makeStyles((theme: any) => ({
     fontWeight: "bolder",
     color: "#e4e4e4",
     width: "100%",
-    margin: "24px 0 22px 20px",
+    margin: "10px 0 22px 20px",
   },
   container: {
     position: "absolute",
@@ -22,7 +22,7 @@ const useStyles: any = makeStyles((theme: any) => ({
     left: "50%",
   },
   subText: {
-    color: "#4f4f4f",
+    color: "#6f6f6f",
     fontSize: "16px",
     fontFamily: "Arial, Helvetica, sans-serif",
     letterSpacing: "6px",
@@ -30,6 +30,8 @@ const useStyles: any = makeStyles((theme: any) => ({
     width: "100%",
     margin: "0 0 26px 20px",
     height: "20px",
+    display: "flex",
+    alignItems: "center",
     "&:hover": {
       fontSize: "20px",
     },
@@ -116,7 +118,7 @@ const useStyles: any = makeStyles((theme: any) => ({
     color: "#4a4a4a",
     fontFamily: "'La Belle Aurore',cursive",
     fontStyle: "italic",
-    fontSize: "14px",
+    fontSize: "18px",
     marginBottom: "8px",
   },
   contactBtn: {
@@ -142,7 +144,7 @@ const useStyles: any = makeStyles((theme: any) => ({
     transition: "all 0.3s ease-out",
     display: "flex",
     width: "70%",
-    paddingTop: "6%",
+    paddingTop: "5%",
     backgroundColor: "#1d1d1d",
     borderRadius: "20px",
     flexDirection: "column",
@@ -165,12 +167,13 @@ function HomeDialog({ isShown }: HomeDialogProps) {
     "Y",
     "XL",
     "XR",
-    "RX",
-    "RY",
-    "SkewY",
-    "SkewX",
-    "Crazy",
-    "Crazy2",
+    "YB",
+    // "RX",
+    // "RY",
+    // "SkewY",
+    // "SkewX",
+    // "Crazy",
+    // "Crazy2",
   ];
 
   useEffect(() => {
@@ -186,10 +189,7 @@ function HomeDialog({ isShown }: HomeDialogProps) {
     <div className={clsx(classes.dialog, style[classValue])}>
       <div className={classes.htmlText}>{htmlString}</div>
       <div className={classes.htmlText}>{bodyString}</div>
-      <div
-        className={classes.htmlText}
-        style={{ margin: "unset", marginTop: "16px" }}
-      >
+      <div className={classes.htmlText} style={{ margin: "unset" }}>
         {h1String}
       </div>
       <h1 className={classes.title}>
@@ -206,9 +206,14 @@ function HomeDialog({ isShown }: HomeDialogProps) {
         <span className={classes.subLetter7}>A</span>
         <span className={classes.subLetter8}>C</span>
         <span className={classes.subLetter9}>K</span>
-        <span className={classes.devText}>DEVELOPER</span>
+        <span className={classes.devText}>DEVELOPER</span>{" "}
+        <div
+          className={classes.htmlText}
+          style={{ marginLeft: "16px", marginBottom: "unset" }}
+        >
+          {h1CloseString}
+        </div>
       </div>
-      <div className={classes.htmlText}>{h1CloseString}</div>
       <div className={classes.htmlText}>{buttonString}</div>
       <div className={classes.contactBtn}>Contact me!</div>
       <div className={classes.htmlText} style={{ marginTop: "8px" }}>

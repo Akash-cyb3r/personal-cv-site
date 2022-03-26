@@ -24,6 +24,7 @@ const useStyles: any = makeStyles((theme: any) => ({
     padding: "22px",
     borderRadius: "16px",
     display: "flex",
+    boxShadow: "0 19px 38px rgb(0 0 0 / 44%), 0 15px 12px rgb(0 0 0 / 57%)",
   },
   video: {
     objectFit: "cover",
@@ -36,13 +37,30 @@ const useStyles: any = makeStyles((theme: any) => ({
 interface PersonalCvProps {
   radioValue: any;
   component: any;
+  isLoading: boolean;
+  setLoading: any;
+  isFirstRun: boolean;
+  setFirstRun: any;
 }
-function PersonalCv({ radioValue, component }: PersonalCvProps) {
+function PersonalCv({
+  radioValue,
+  component,
+  isLoading,
+  setLoading,
+  isFirstRun,
+  setFirstRun,
+}: PersonalCvProps) {
   const classes = useStyles();
 
   return (
     <div className={classes.main}>
-      <BackgroundComponent radioValue={radioValue} />
+      <BackgroundComponent
+        radioValue={radioValue}
+        isLoading={isLoading}
+        setLoading={setLoading}
+        isFirstRun={isFirstRun}
+        setFirstRun={setFirstRun}
+      />
       <div className={classes.content}>
         <Profile />
         {/* <div className={classes.dialog}> */}
